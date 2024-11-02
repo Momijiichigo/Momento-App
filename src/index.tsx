@@ -10,8 +10,8 @@ import { MapTest } from "./pages/MapTest";
 
 render(
   () => <Router>
-    <Route path="/" component={DiscoveredPage}/>
-    <Route path="/maptest" component={MapTest}/>
+    <Route path="/" component={DiscoveredPage} />
+    <Route path="/maptest" component={MapTest} />
     
 
   </Router>,
