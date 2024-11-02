@@ -8,7 +8,9 @@ export const DiscoveredPage: Component = () => {
       <h1>Your discovered momentos</h1>
       <A href="/maptest">map test</A>
       <br />
-      <A href="/list">Chr</A>
+      <A href="/list">ChronoList</A>
+      <br />
+      <A href="/camera">Camera</A>
     </div>
   );
 }
