@@ -8,10 +8,11 @@ import { MapTest } from "./pages/MapTest";
 // import { ChatList } from "./pages/ChatList";
 // import { ChatScreen } from "./pages/ChatScreen";
 
+import { currentLocation } from './dummyData'
 render(
   () => <Router>
     <Route path="/" component={DiscoveredPage} />
-    <Route path="/maptest" component={MapTest} />
+    <Route path="/maptest" component={()=><MapTest currentLocation={currentLocation} />} />
     
 
   </Router>,
