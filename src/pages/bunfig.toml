@@ -1,0 +1,3 @@
+[install.scopes]
+# registry as string
+"@here" = "https://repo.platform.here.com/artifactory/api/npm/maps-api-for-javascript/"
