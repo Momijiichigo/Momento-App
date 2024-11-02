@@ -1,7 +1,18 @@
-# Tauri + Solid + Typescript
+# Momento App
 
-This template should help get you started developing with Tauri, Solid and Typescript in Vite.
+Momento - Mobile app that lets you discover time capsules of your memories
 
-## Recommended IDE Setup
+## Tech Stack
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- Mobile App Frontend
+    - Tauri
+    - Typescript
+    - SolidJS
+    - TailwindCSS
+
+- DB
+    - Supabase
+
+- APIs
+    - HERE Map API
+
