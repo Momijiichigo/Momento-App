@@ -9,25 +9,23 @@ set export
 # https://github.com/casey/just/issues/626
 # for now, I just use `npm:concurrently` on deno
 
-init_env_vars:
-  source ./env_vars.sh
 
 test:
   echo $NDK_HOME
 
-dev-desktop: init_env_vars
+dev-desktop:
   cargo tauri dev
 
-dev-ios: init_env_vars
+dev-ios:
   cargo tauri ios dev
 
-init-android: init_env_vars
+init-android:
   cargo tauri android init
 
-dev-android: init_env_vars
+dev-android:
   cargo tauri android dev
 
 # prepare `./tauri-app/app-icon.png` (1240x1240px with transparency)
-gen-app-icons: init_env_vars
+gen-app-icons:
   cargo tauri icon --ios-color #fff
 
