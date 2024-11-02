@@ -16,6 +16,10 @@ test:
 dev-desktop:
   cargo tauri dev
 
+dev-mac:
+  cargo tauri dev --target aarch64-apple-darwin
+
+
 dev-ios:
   cargo tauri ios dev
 
