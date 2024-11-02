@@ -10,6 +10,8 @@ import {DiscoveredPage} from "./pages/Discovered";
 render(
   () => <Router>
     <Route path="/" component={DiscoveredPage}/>
+    <Route path="/maptest" component={DiscoveredPage}/>
+    
 
   </Router>,
   document.getElementById("root") as HTMLElement
