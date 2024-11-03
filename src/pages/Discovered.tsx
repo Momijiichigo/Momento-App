@@ -17,6 +17,8 @@ export const DiscoveredPage: Component = () => {
       <A href="/search">search</A>
       <br />
       <A href="/account">account</A>
+      <br />
+      <A href="/NewMomento">NewMomento</A>
     </div>
   );
 }

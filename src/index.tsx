@@ -14,6 +14,8 @@ import { ChronoListPage } from "./pages/ChronoList";
 import { MomentoPage } from "./pages/Momento";
 import { SearchPage } from "./pages/Search";
 import { AccountPage } from "./pages/Account";
+import { NewMomentoPage } from "./pages/NewMomento";
+
 render(
   () => <Router>
     <Route path="/" component={DiscoveredPage} />
@@ -23,6 +25,7 @@ render(
     <Route path="/momento" component={MomentoPage} />
     <Route path="/search" component={SearchPage} />
     <Route path="/account" component={AccountPage} />
+    <Route path="/NewMomento" component={NewMomentoPage}/>
   </Router>,
   document.getElementById("root") as HTMLElement
 );
