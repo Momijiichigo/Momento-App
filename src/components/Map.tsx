@@ -1,5 +1,5 @@
 import H from '@here/maps-api-for-javascript'
-import {createSignal, onMount, onCleanup, Component, Accessor, JSX, Setter} from 'solid-js'
+import {createSignal, onMount, onCleanup, Component, Accessor, JSX, Setter, Show} from 'solid-js'
 import {BiRegularCross, BiRegularLocationPlus, BiSolidNavigation} from 'solid-icons/bi'
 import {currentLocation} from '../dummyData'
 import {A} from '@solidjs/router'
@@ -9,7 +9,6 @@ const API_KEY = import.meta.env.VITE_HERE_API_KEY
 export type Marker = {
   lat: number
   lng: number
-  label: string
   onclick?: () => void
 }
 export type Location = {
@@ -20,7 +19,7 @@ export type Location = {
 // Function to initialize clustering
 export const startClustering = (map: H.Map, markerData: Marker[]) => {
   // Convert marker data into DataPoints for clustering
-  const dataPoints = markerData.map(({lat, lng, onclick}) => new H.clustering.DataPoint(lat, lng, undefined, { onclick: onclick }))
+  const dataPoints = markerData.map(({lat, lng, onclick}) => new H.clustering.DataPoint(lat, lng, undefined, {onclick: onclick}))
 
   // Create a clustering provider with options
   const clusteredDataProvider = new H.clustering.Provider(dataPoints, {
@@ -39,10 +38,10 @@ export const startClustering = (map: H.Map, markerData: Marker[]) => {
       // const {data} = e.target
       if (e.target.data.getData) {
         // get the marker's onclick function and call it
-        e.target.getData().onclick?.()
+        e.target.getData().getData().onclick?.()
       } else {
         map.setCenter(e.target.data.getPosition(), true)
-        setTimeout(()=> map.setZoom(map.getZoom() + 1, true), 300)
+        setTimeout(() => map.setZoom(map.getZoom() + 1, true), 300)
       }
     }
   })
@@ -103,6 +102,7 @@ export type MapProps = {
   clusterMarkerInfo?: Marker[],
   screenCenterMarker?: JSX.Element
   focusLocationButton?: boolean
+  ready?: Accessor<boolean>
 
 
 }
@@ -114,6 +114,9 @@ export const Map: Component<MapProps> = (props) => {
   onMount(() => {
     // Check if the map has already been initialized
     if (!map) {
+      if (props.ready && !props.ready()) {
+        return
+      }
       // Initialize the Platform object
       const platform = new H.service.Platform({
         apikey: API_KEY
@@ -156,17 +159,20 @@ export const Map: Component<MapProps> = (props) => {
   })
 
   return (
-    <div class="h-screen w-full flex flex-col">
-      {props.focusLocationButton && <button class="fixed bottom-20 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50"
-        onClick={() => focusLocation(map, props.currentLocation())}>
-        <BiSolidNavigation class="w-6 h-6" />
-      </button>
-      }
-      <main class="flex-grow">
-        <div ref={mapRef!} class="w-full h-full" />
-      </main>
-      {props.screenCenterMarker}
-    </div>
+    <Show when={!(props.ready && !props.ready())} fallback={<div />}>
+      <div class="h-screen w-full flex flex-col">
+        {props.focusLocationButton && <button class="fixed bottom-20 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50"
+          onClick={() => focusLocation(map, props.currentLocation())}>
+          <BiSolidNavigation class="w-6 h-6" />
+        </button>
+        }
+        <main class="flex-grow">
+          <div ref={mapRef!} class="w-full h-full" />
+        </main>
+        {props.screenCenterMarker}
+      </div>
+
+    </Show>
   )
 
 }

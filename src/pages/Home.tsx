@@ -5,13 +5,15 @@ export const Home: Component = () => {
   return (
     <div>
       <h1>Your discovered momentos</h1>
+      <A href="/discovered">Discovered</A>
+      <br />
       <A href="/maptest">map test</A>
       <br />
       <A href="/list">ChronoList</A>
       <br />
       <A href="/camera">Camera</A>
       <br />
-      <A href="/momento">Momento</A>
+      <A href="/momento/0">Momento</A>
       <br />
       <A href="/search">search</A>
       <br />

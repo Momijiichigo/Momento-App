@@ -4,13 +4,15 @@ import {BiRegularCross, BiRegularLocationPlus, BiSolidNavigation} from 'solid-ic
 // You would typically store this in an environment variable
 import {Marker, Location, Map} from '../components/Map'
 import {A} from '@solidjs/router'
+import {currentLocation} from "../dummyData";
+import {AiOutlineUnorderedList} from 'solid-icons/ai'
 
-
-
-
-
-export const MapTest: Component<{currentLocation: Accessor<Location>}> = (props) => {
-  const [map, setMap] = createSignal<H.Map>() as [Accessor<H.Map>, Setter<H.Map>]
+export type MomentoMapMarker = {
+  id: number
+  lat: number
+  lng: number
+}
+export const MomentoMapView: Component<{momentoMapMarkers: MomentoMapMarker[]}> = (props) => {
 
   const [selectedMomentoId, setSelectedMomentoId] = createSignal<number | null>(null)
   const [markersInfo, setMarkersInfo] = createSignal<Marker[] | undefined>(undefined)
@@ -24,11 +26,13 @@ export const MapTest: Component<{currentLocation: Accessor<Location>}> = (props)
       invisibleLink!.click()
     }
 
-    setMarkersInfo([
-      {lat: 52.5200, lng: 13.4050, onclick: () => showMomentoPage(0)},
-      {lat: 52.5300, lng: 13.4150, onclick: () => showMomentoPage(1)},
-      {lat: 52.5100, lng: 13.3950, onclick: () => showMomentoPage(4)},
-    ])
+    setMarkersInfo(props.momentoMapMarkers.map((momento) => {
+      return {
+        lat: momento.lat,
+        lng: momento.lng,
+        onclick: () => showMomentoPage(momento.id)
+      }
+    }))
   })
 
 
@@ -36,12 +40,8 @@ export const MapTest: Component<{currentLocation: Accessor<Location>}> = (props)
     <>
       <Map
         // ready={() => markersInfo() !== undefined}
-        currentLocation={props.currentLocation}
+        currentLocation={currentLocation}
         clusterMarkerInfo={markersInfo()}
-        setMap={setMap}
-        screenCenterMarker={
-          <BiRegularCross class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-        }
         focusLocationButton
       />
 

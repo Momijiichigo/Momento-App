@@ -1,9 +1,9 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
 import "./index.css";
-import {Route, Router} from "@solidjs/router";
+import {A, Route, Router} from "@solidjs/router";
 import {Home} from "./pages/Home";
-import {DiscoveredPage} from "./pages/Discovered";
+import {DiscoveredMapPage} from "./pages/DiscoveredMap";
 import { MapTest } from "./pages/MapTest";
 import {CameraPage} from "./pages/Camera";
 // import { ChatList } from "./pages/ChatList";
@@ -17,16 +17,32 @@ import { AccountPage } from "./pages/Account";
 import { NewMomentoPage } from "./pages/NewMomento";
 
 import {Menu} from "./components/Menu";
+import {createSignal} from "solid-js";
+import {DiscoveredListPage} from "./pages/DiscoveredList";
+
+// export const [jumpLink, setJumpLink] = createSignal("/");
+// const jumpAnchor = <A href={jumpLink()} />
+// export const jumpTo = (link: string) => {
+//   setJumpLink(link)
+//   /* @ts-ignore */
+//   jumpAnchor?.click()
+// }
+//
+// setTimeout(() => {
+
+
+
 render(
   () => <Router root={(props)=> <>{props.children}<Menu /></>}>
     <Route path="/" component={Home} />
+    <Route path="/discovered" component={DiscoveredMapPage} />
+    <Route path="/discovered-list" component={DiscoveredListPage} />
     <Route path="/maptest" component={()=><MapTest currentLocation={currentLocation} />} />
     <Route path="/camera" component={CameraPage} />
-    <Route path="/list" component={ChronoListPage} />
-    <Route path="/momento" component={MomentoPage} />
+    <Route path="/momento/:id" component={MomentoPage} />
     <Route path="/search" component={SearchPage} />
     <Route path="/account" component={AccountPage} />
-    <Route path="/NewMomento" component={NewMomentoPage}/>
+    <Route path="/new-momento" component={NewMomentoPage}/>
   </Router>,
   document.getElementById("root") as HTMLElement
 );
