@@ -10,11 +10,13 @@ import {CameraPage} from "./pages/Camera";
 // import { ChatScreen } from "./pages/ChatScreen";
 
 import { currentLocation } from './dummyData'
+import { ChronoListPage } from "./pages/ChronoList";
 render(
   () => <Router>
     <Route path="/" component={DiscoveredPage} />
     <Route path="/maptest" component={()=><MapTest currentLocation={currentLocation} />} />
     <Route path="/camera" component={CameraPage} />
+    <Route path="/list" component={ChronoListPage} />
     
 
   </Router>,
