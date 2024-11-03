@@ -2,12 +2,12 @@ import {A} from "@solidjs/router";
 import {Accessor, Component, Show, on} from "solid-js";
 import {createSignal, For, createMemo} from 'solid-js';
 import {MomentoInfo} from "./Momento";
-
+import { ImCross } from 'solid-icons/im'
 export type MomentoDiscoveryInfo = MomentoInfo & {
   discoveredDate?: string;
 };
 
-export const ChronoListPage: Component<{discoveredList: boolean, momentoInfo: MomentoDiscoveryInfo[]}> = (props) => {
+export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: MomentoDiscoveryInfo[]}> = (props) => {
 
   enum SortCriteria {
     CreatedDate,
@@ -43,8 +43,8 @@ export const ChronoListPage: Component<{discoveredList: boolean, momentoInfo: Mo
       <header class="sticky top-0 z-50 bg-white">
         <h1 class="text-2xl font-bold text-gray-800 p-2 text-center">{props.discoveredList ? "Discovery" : "Timeline"}</h1>
         {/* close button */}
-        <A href={props.discoveredList ? '/discovered' : '/'} class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
-          x
+        <A href={props.discoveredList ? '/discovered' : '/your-momento'} class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
+          <ImCross />
         </A>
       </header>
       <div class="sticky top-12 z-40 bg-white shadow-md">
@@ -81,7 +81,7 @@ export const ChronoListPage: Component<{discoveredList: boolean, momentoInfo: Mo
                   Created: {formatDate(item.date)}
                 </div>
               </div>
-              <div class="bg-white rounded-lg overflow-hidden shadow-md flex h-32">
+              <A href="/momento/0" class="bg-white rounded-lg overflow-hidden shadow-md flex h-32">
                 <div class="w-1/2 relative">
                   <img
                     src={item.photoUrl}
@@ -94,7 +94,7 @@ export const ChronoListPage: Component<{discoveredList: boolean, momentoInfo: Mo
                   <h2 class="text-lg font-semibold text-gray-800 mb-2">{item.title}</h2>
                   <p class="text-sm text-gray-600">{item.comment}</p>
                 </div>
-              </div>
+              </A>
             </div>
           )}
         </For>

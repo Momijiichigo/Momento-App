@@ -12,7 +12,7 @@ export const YourMomentoPage: Component = () => {
     <MomentoMapView momentoMapMarkers={momentoMapMarkers} />
 
       {/* floating button on the up right corner */}
-      <A href="/discovered-list" class="absolute z-40 top-4 right-4 bg-white p-2 rounded-full shadow-md">
+      <A href="/your-momento-list" class="absolute z-40 top-4 right-4 bg-white p-2 rounded-full shadow-md">
         <AiOutlineUnorderedList class="w-8 h-8" />
       </A>
 

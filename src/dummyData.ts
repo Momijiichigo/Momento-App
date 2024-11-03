@@ -96,7 +96,7 @@ export const cards: Card[] = [
   }
 ];
 export const momentoMapMarkers = [
-  {lat: 52.5200, lng: 13.4050, id: 0},
+  {lat: 52.5300, lng: 13.4050, id: 0},
   {lat: 52.5300, lng: 13.4150, id: 1},
   {lat: 52.5100, lng: 13.3950, id: 4},
 ]

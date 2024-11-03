@@ -21,6 +21,8 @@ import {createSignal} from "solid-js";
 import {DiscoveredListPage} from "./pages/DiscoveredList";
 import {SettingLocation} from "./pages/SettingMap";
 import {Login} from "./pages/Login";
+import { YourMomentoPage } from "./pages/YourMomento";
+import { YourMomentoListPage } from "./pages/YourMomentoList";
 
 // export const [jumpLink, setJumpLink] = createSignal("/");
 // const jumpAnchor = <A href={jumpLink()} />
@@ -40,8 +42,8 @@ render(
     <Route path="/login" component={Login} />
     <Route path="/discovered" component={DiscoveredMapPage} />
     <Route path="/discovered-list" component={DiscoveredListPage} />
-    <Route path="/your-momento" component={DiscoveredMapPage} />
-    <Route path="/your-momento-list" component={DiscoveredListPage} />
+    <Route path="/your-momento" component={YourMomentoPage} />
+    <Route path="/your-momento-list" component={YourMomentoListPage} />
     <Route path="/maptest" component={()=><MapTest currentLocation={currentLocation} />} />
     <Route path="/camera" component={CameraPage} />
     <Route path="/momento/:id" component={MomentoPage} />
