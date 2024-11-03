@@ -1,7 +1,9 @@
 import H from '@here/maps-api-for-javascript'
 import { createSignal, onMount, onCleanup, Component, Accessor } from 'solid-js'
 import { Portal } from 'solid-js/web'
-import { BiRegularCross } from 'solid-icons/bi'
+import { BiRegularCross, BiRegularLocationPlus, BiSolidNavigation } from 'solid-icons/bi'
+import { FaSolidMapLocationDot, FaSolidBookOpen } from 'solid-icons/fa'
+import { AiOutlineSetting } from 'solid-icons/ai'
 import { currentLocation } from '../dummyData'
 // You would typically store this in an environment variable
 // const API_KEY = import.meta.env.HERE_API_KEY
@@ -24,6 +26,28 @@ const markers: Marker[] = [
     { lat: 52.5300, lng: 13.4150, label: '2', url: 'https://example.com/marker2' },
     { lat: 52.5100, lng: 13.3950, label: '3', url: 'https://example.com/marker3' },
 ]
+
+// Simple NavLink component to simulate routing
+const NavLink: Component<{ href: string; children: any }> = (props) => {
+    const [isActive, setIsActive] = createSignal(false)
+
+    const handleClick = (e: Event) => {
+        e.preventDefault()
+        setIsActive(true)
+        // In a real app, you'd use a router to navigate here
+        console.log(`Navigating to ${props.href}`)
+    }
+
+    return (
+        <a
+            href={props.href}
+            class={`flex flex-col items-center ${isActive() ? 'text-blue-500' : 'text-gray-600'} hover:text-blue-500`}
+            onClick={handleClick}
+        >
+            {props.children}
+        </a>
+    )
+}
 
 // Function to initialize clustering
 const startClustering = (map: H.Map, markerData: Marker[]) => {
@@ -81,22 +105,22 @@ export const getLocationOfPin = (map: H.Map) => {
  */
 export const addCircleToMap = (map: H.Map) => {
     map.addObject(new H.map.Circle(
-      // The central point of the circle
-     currentLocation(),
-      // The radius of the circle in meters
-      1000,
-      {
-        data: null,
-        style: new H.map.SpatialStyle({
-            strokeColor: 'rgba(0, 0, 0, 0)', // Color of the perimeter
-            lineWidth: 2,
-            fillColor: 'rgba(0, 0, 255, 0.2)'
-        })
-      }
-      
+        // The central point of the circle
+        currentLocation(),
+        // The radius of the circle in meters
+        1000,
+        {
+            data: null,
+            style: new H.map.SpatialStyle({
+                strokeColor: 'rgba(0, 0, 0, 0)', // Color of the perimeter
+                lineWidth: 2,
+                fillColor: 'rgba(0, 0, 255, 0.2)'
+            })
+        }
+
     ));
-  }
-  
+}
+
 
 export const MapTest: Component<{ currentLocation: Accessor<Location> }> = (props) => {
     let mapRef: HTMLDivElement;
@@ -144,12 +168,16 @@ export const MapTest: Component<{ currentLocation: Accessor<Location> }> = (prop
     })
     return (
         <div class="h-screen w-full flex flex-col">
-            <button
+            <button class="fixed bottom-20 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50"
+                onClick={() => showMyCurrentLocation(map, props.currentLocation())}>
+                <BiSolidNavigation class="w-6 h-6" />
+            </button>
+            {/* <button
                 class="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                 onClick={() => showMyCurrentLocation(map, props.currentLocation())}
             >
                 Show My Location
-            </button>
+            </button> */}
             <button
                 class="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                 onClick={() => getLocationOfPin(map)}
@@ -157,8 +185,36 @@ export const MapTest: Component<{ currentLocation: Accessor<Location> }> = (prop
                 pin location
             </button>
             <main class="flex-grow">
-                <div ref={mapRef!} class="w-full h-full"/>
+                <div ref={mapRef!} class="w-full h-full" />
             </main>
+            <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+                <ul class="flex justify-around items-center h-16">
+                    <li>
+                        <NavLink href="/">
+                            <BiRegularLocationPlus class="w-6 h-6" />
+                            <span class="text-xs mt-1">Momento</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink href="/search">
+                            <FaSolidMapLocationDot class="w-6 h-6" />
+                            <span class="text-xs mt-1">Discovery</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink href="/notifications">
+                            <FaSolidBookOpen class="w-6 h-6" />
+                            <span class="text-xs mt-1">History</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink href="/profile">
+                            <AiOutlineSetting class="w-6 h-6" />
+                            <span class="text-xs mt-1">Setting</span>
+                        </NavLink>
+                    </li>
+                </ul>
+            </nav>
             <BiRegularCross class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
     )
