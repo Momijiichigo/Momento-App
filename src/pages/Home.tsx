@@ -7,6 +7,8 @@ export const Home: Component = () => {
       <h1>Your discovered momentos</h1>
       <A href="/discovered">Discovered</A>
       <br />
+      <A href="/login">Login</A>
+      <br />
       <A href="/maptest">map test</A>
       <br />
       <A href="/list">ChronoList</A>

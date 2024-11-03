@@ -19,6 +19,7 @@ import { NewMomentoPage } from "./pages/NewMomento";
 import {Menu} from "./components/Menu";
 import {createSignal} from "solid-js";
 import {DiscoveredListPage} from "./pages/DiscoveredList";
+import {Login} from "./pages/Login";
 
 // export const [jumpLink, setJumpLink] = createSignal("/");
 // const jumpAnchor = <A href={jumpLink()} />
@@ -35,8 +36,11 @@ import {DiscoveredListPage} from "./pages/DiscoveredList";
 render(
   () => <Router root={(props)=> <>{props.children}<Menu /></>}>
     <Route path="/" component={Home} />
+    <Route path="/login" component={Login} />
     <Route path="/discovered" component={DiscoveredMapPage} />
     <Route path="/discovered-list" component={DiscoveredListPage} />
+    <Route path="/your-momento" component={DiscoveredMapPage} />
+    <Route path="/your-momento-list" component={DiscoveredListPage} />
     <Route path="/maptest" component={()=><MapTest currentLocation={currentLocation} />} />
     <Route path="/camera" component={CameraPage} />
     <Route path="/momento/:id" component={MomentoPage} />

@@ -5,12 +5,14 @@ export const [currentLocation, setCurrentLocation] = createSignal<{
 }>({lat: 52.51229, lng: 13.40048});
 
 import {MomentoInfo} from "./pages/Momento";
+import {MomentoDiscoveryInfo} from "./pages/ChronoList";
 // dummy Momento data
-export const dummyMomento: MomentoInfo[] = [
+export const dummyMomento: MomentoDiscoveryInfo[] = [
   {
     id: 0,
     title: "Title",
-    date: "11/03/2024",
+    date: "11/01/2024",
+    discoveredDate: "11/01/2025",
     comment: "short comment",
     photoUrl: "https://picsum.photos/300/200",
     subPosts: []
@@ -19,24 +21,27 @@ export const dummyMomento: MomentoInfo[] = [
     id: 1,
     title: "Title",
     date: "11/03/2024",
+    discoveredDate: "11/11/2025",
     comment: "short comment",
-    photoUrl: "https://picsum.photos/300/200",
+    photoUrl: "https://picsum.photos/301/201",
     subPosts: []
   },
   {
     id: 2,
     title: "Title",
-    date: "11/03/2024",
+    date: "11/12/2024",
+    discoveredDate: "10/14/2025",
     comment: "short comment",
-    photoUrl: "https://picsum.photos/300/200",
+    photoUrl: "https://picsum.photos/301/200",
     subPosts: []
   },
   {
     id: 3,
     title: "Title",
-    date: "11/03/2024",
+    date: "10/03/2022",
+    discoveredDate: "10/14/2024",
     comment: "short comment",
-    photoUrl: "https://picsum.photos/300/200",
+    photoUrl: "https://picsum.photos/300/201",
     subPosts: []
   }
 ]

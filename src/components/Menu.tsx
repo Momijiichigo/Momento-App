@@ -26,7 +26,7 @@ export const Menu: Component = () => {
     },
     {
       icon: <FaSolidBookOpen class="w-6 h-6" />,
-      link: "/notifications"
+      link: "/your-momento"
     },
     {
       icon: <AiOutlineSetting class="w-6 h-6" />,

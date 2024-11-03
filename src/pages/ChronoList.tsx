@@ -3,7 +3,7 @@ import {Accessor, Component, Show, on} from "solid-js";
 import {createSignal, For, createMemo} from 'solid-js';
 import {MomentoInfo} from "./Momento";
 
-type MomentoDiscoveryInfo = MomentoInfo & {
+export type MomentoDiscoveryInfo = MomentoInfo & {
   discoveredDate?: string;
 };
 
@@ -70,12 +70,15 @@ export const ChronoListPage: Component<{discoveredList: boolean, momentoInfo: Mo
           {(item) => (
             <div class="mb-8">
               <div class="sticky top-20 z-10 bg-gray-50 flex justify-between items-center mb-0 py-2">
-                <div class="flex items-center">
+                <Show when={props.discoveredList}>
+
+                  <div class="flex items-center">
                   <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
-                  <span class="text-sm font-medium text-gray-700">{formatDate(sortCriteria() === SortCriteria.CreatedDate ? item.date : item.discoveredDate)}</span>
-                </div>
+                  <span class="text-sm font-medium text-gray-700">{formatDate(sortCriteria() === SortCriteria.CreatedDate ? item.date : item.discoveredDate || item.date)}</span>
+                  </div>
+                </Show>
                 <div class="text-sm text-gray-500">
-                  Discovered: {formatDate(item.discoveredDate)}
+                  Created: {formatDate(item.date)}
                 </div>
               </div>
               <div class="bg-white rounded-lg overflow-hidden shadow-md flex h-32">
