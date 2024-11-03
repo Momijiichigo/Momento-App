@@ -6,8 +6,8 @@ import { FaSolidMapLocationDot, FaSolidBookOpen } from 'solid-icons/fa'
 import { AiOutlineSetting } from 'solid-icons/ai'
 import { currentLocation } from '../dummyData'
 // You would typically store this in an environment variable
-// const API_KEY = import.meta.env.HERE_API_KEY
-const API_KEY = "2mBY--U2jw6sSKsCi6C78PexQwst92fWaMeSb3i3G38"
+const API_KEY = import.meta.env.VITE_HERE_API_KEY
+// const API_KEY = ""
 console.log(API_KEY)
 // Sample data for markers
 type Marker = {
