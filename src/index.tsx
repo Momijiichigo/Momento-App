@@ -16,9 +16,10 @@ import { SearchPage } from "./pages/Search";
 import { AccountPage } from "./pages/Account";
 import { NewMomentoPage } from "./pages/NewMomento";
 
+import {Menu} from "./components/Menu";
 render(
-  () => <Router>
-    <Route path="/" component={DiscoveredPage} />
+  () => <Router root={(props)=> <>{props.children}<Menu /></>}>
+    <Route path="/" component={Home} />
     <Route path="/maptest" component={()=><MapTest currentLocation={currentLocation} />} />
     <Route path="/camera" component={CameraPage} />
     <Route path="/list" component={ChronoListPage} />
