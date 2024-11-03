@@ -65,7 +65,7 @@ export const focusLocation = (map: H.Map, location: Location, zoom = 14) => {
 
 
     // Remove any existing objects (like markers) from the map
-    map.removeObjects(map.getObjects())
+    // map.removeObjects(map.getObjects())
 
     // Add a new marker at the specified location
     const marker = new H.map.Marker(location)
@@ -78,10 +78,10 @@ export const focusLocation = (map: H.Map, location: Location, zoom = 14) => {
  *
  * @param  {H.Map} map      A HERE Map instance within the application
  */
-export const addCircleToMap = (map: H.Map, color: string = 'rgba(0, 0, 255, 0.2)') => {
+export const addCircleToMap = (map: H.Map, currentLocation: Location, color: string = 'rgba(0, 0, 255, 0.2)') => {
   map.addObject(new H.map.Circle(
     // The central point of the circle
-    currentLocation(),
+    currentLocation,
     // The radius of the circle in meters
     1000,
     {
@@ -103,7 +103,7 @@ export type MapProps = {
   screenCenterMarker?: JSX.Element
   focusLocationButton?: boolean
   ready?: Accessor<boolean>
-
+  addCircleToMap?: (map: H.Map, color?: string) => void
 
 }
 
@@ -132,7 +132,7 @@ export const Map: Component<MapProps> = (props) => {
         defaultLayers.vector!.normal.map,
         {
           center: props.currentLocation(),
-          zoom: 12,
+          zoom: 15,
           pixelRatio: window.devicePixelRatio || 1
         }
       )

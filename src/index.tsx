@@ -19,6 +19,7 @@ import { NewMomentoPage } from "./pages/NewMomento";
 import {Menu} from "./components/Menu";
 import {createSignal} from "solid-js";
 import {DiscoveredListPage} from "./pages/DiscoveredList";
+import {SettingLocation} from "./pages/SettingMap";
 import {Login} from "./pages/Login";
 
 // export const [jumpLink, setJumpLink] = createSignal("/");
@@ -47,6 +48,7 @@ render(
     <Route path="/search" component={SearchPage} />
     <Route path="/account" component={AccountPage} />
     <Route path="/new-momento" component={NewMomentoPage}/>
+    <Route path="/settinglocation" component={()=><SettingLocation currentLocation={currentLocation} />} />
   </Router>,
   document.getElementById("root") as HTMLElement
 );

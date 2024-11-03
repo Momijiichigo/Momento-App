@@ -2,7 +2,7 @@ import H from '@here/maps-api-for-javascript'
 import {createSignal, onMount, onCleanup, Component, Accessor, Setter} from 'solid-js'
 import {BiRegularCross, BiRegularLocationPlus, BiSolidNavigation} from 'solid-icons/bi'
 // You would typically store this in an environment variable
-import {Marker, Location, Map} from '../components/Map'
+import {Marker, Location, Map, addCircleToMap} from '../components/Map'
 import {A} from '@solidjs/router'
 
 
@@ -22,6 +22,7 @@ export const MapTest: Component<{currentLocation: Accessor<Location>}> = (props)
       setSelectedMomentoId(id)
       /** @ts-ignore */
       invisibleLink!.click()
+     
     }
 
     setMarkersInfo([
@@ -29,6 +30,26 @@ export const MapTest: Component<{currentLocation: Accessor<Location>}> = (props)
       {lat: 52.5300, lng: 13.4150, onclick: () => showMomentoPage(1)},
       {lat: 52.5100, lng: 13.3950, onclick: () => showMomentoPage(4)},
     ])
+    console.log(map());
+      
+    //   addCircleToMap(map(), props.currentLocation())
+    setTimeout(()=> map().addObject(new H.map.Circle(
+        // The central point of the circle
+        props.currentLocation(),
+        // The radius of the circle in meters
+        1000,
+        {
+          data: null,
+          style: new H.map.SpatialStyle({
+            strokeColor: 'rgba(0, 0, 0, 0)', // Color of the perimeter
+            lineWidth: 2,
+            fillColor: 'rgba(0, 0, 255, 0.2)'
+          })
+        }
+    
+      )),
+      500)
+    ;
   })
 
 

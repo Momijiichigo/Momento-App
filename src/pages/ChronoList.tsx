@@ -41,7 +41,7 @@ export const ChronoListPage: Component<{discoveredList: boolean, momentoInfo: Mo
   return (
     <>
       <header class="sticky top-0 z-50 bg-white">
-        <h1 class="text-2xl font-bold text-gray-800 p-2 text-center">Your Timeline</h1>
+        <h1 class="text-2xl font-bold text-gray-800 p-2 text-center">{props.discoveredList ? "Discovery" : "Timeline"}</h1>
         {/* close button */}
         <A href={props.discoveredList ? '/discovered' : '/'} class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
           x
