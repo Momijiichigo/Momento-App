@@ -1,7 +1,7 @@
 # Momento App
 
 Momento - Mobile app that lets you discover time capsules of your memories
-
+https://docs.google.com/presentation/d/1zsh0NKxN-Br3vJdHc80IJXy1dX3vmX2RuEF5d_NgcB0/edit?usp=sharing
 ## Run
 
 For details, please see `justfile`.
