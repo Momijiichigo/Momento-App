@@ -68,7 +68,7 @@ export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: M
       <main class="p-4">
         <For each={sortedItems()}>
           {(item) => (
-            <div class="mb-8">
+            <A href={`/momento/${item.id}`} class="mb-8">
               <div class="sticky top-20 z-10 bg-gray-50 flex justify-between items-center mb-0 py-2">
                 <Show when={props.discoveredList}>
 
@@ -81,7 +81,7 @@ export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: M
                   Created: {formatDate(item.date)}
                 </div>
               </div>
-              <A href="/momento/0" class="bg-white rounded-lg overflow-hidden shadow-md flex h-32">
+              <div class="bg-white rounded-lg overflow-hidden shadow-md flex h-32">
                 <div class="w-1/2 relative">
                   <img
                     src={item.photoUrl}
@@ -94,8 +94,8 @@ export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: M
                   <h2 class="text-lg font-semibold text-gray-800 mb-2">{item.title}</h2>
                   <p class="text-sm text-gray-600">{item.comment}</p>
                 </div>
-              </A>
-            </div>
+              </div>
+            </A>
           )}
         </For>
       </main>

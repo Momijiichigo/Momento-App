@@ -38,7 +38,7 @@ import { YourMomentoListPage } from "./pages/YourMomentoList";
 
 render(
   () => <Router root={(props)=> <>{props.children}<Menu /></>}>
-    <Route path="/" component={Home} />
+    <Route path="/" component={DiscoveredMapPage} />
     <Route path="/login" component={Login} />
     <Route path="/discovered" component={DiscoveredMapPage} />
     <Route path="/discovered-list" component={DiscoveredListPage} />

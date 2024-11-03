@@ -1,6 +1,6 @@
 import { Component } from "solid-js";
 import { BsPersonAdd } from 'solid-icons/bs'
-import { A } from "@solidjs/router";
+import {A} from "@solidjs/router";
 
 interface ProfileData {
   name: string
@@ -18,7 +18,7 @@ export const AccountPage: Component = () => {
     discoveries: 24,
     momentos: 37,
     introduction: "Hello! I'm passionate about photography and love capturing special moments. I enjoy exploring new places and sharing my discoveries with others.",
-    profilePicture: "https://picsum.photos/200/300"
+    profilePicture: "https://picsum.photos/300/300"
   }
 
   return (
@@ -62,14 +62,14 @@ export const AccountPage: Component = () => {
         </div>
 
         {/* Search Button */}
-        <div class="flex justify-end">
-          <A href="/search"
+        <A href="/search" class="flex justify-end">
+          <button
             class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full border-2 border-gray-300 font-mono flex items-center gap-2 transition-colors duration-200"
           >
             <BsPersonAdd class="w-4 h-4" />
             Search
-          </A>
-        </div>
+          </button>
+        </A>
       </div>
     </div>
   )

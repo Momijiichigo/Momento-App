@@ -31,9 +31,9 @@ export const Menu: Component = () => {
       link: "/account"
     }
   ]
-  const [activeButton, setActiveButton] = createSignal(1);
-  const [link, setLink] = createSignal(navButtons[1].link);
 
+  const [link, setLink] = createSignal(navButtons[1].link)
+  const [activeButton, setActiveButton] = createSignal(1)
 
   const onClick = (index: number) => {
     setActiveButton(index);
@@ -50,13 +50,14 @@ export const Menu: Component = () => {
   // }
   return <nav class="fixed z-50 bottom-0 left-0 right-0 bg-white border-t border-gray-200">
     <ul class="flex justify-around items-center h-16">
-      <For each={navButtons}>{(button, index) => {
-        return (<button 
-          onClick={() => onClick(index())}
-          class={`flex flex-col items-center hover:text-blue-500 ${
-            activeButton() === index() ? 'text-blue-500' : 'text-gray-600'
-          }`}>
-          {button.icon}
+      <For each={navButtons}>{({icon}, index) => {
+        const isActive = activeButton() === index()
+        const textColor = isActive ? 'text-blue-500' : 'text-gray-600'
+        return (<button onClick={() => {
+          setActiveButton(index())
+
+        }} class={`flex flex-col items-center ${textColor} hover:text-blue-500`}>
+          {icon}
         </button>)
 
       }}</For>
