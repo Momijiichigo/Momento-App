@@ -32,8 +32,8 @@ export const Menu: Component = () => {
     }
   ]
 
-  const [link, setLink] = createSignal(navButtons[1].link)
   const [activeButton, setActiveButton] = createSignal(1)
+  const [link, setLink] = createSignal(navButtons[1].link)
 
   const onClick = (index: number) => {
     setActiveButton(index);
@@ -43,24 +43,14 @@ export const Menu: Component = () => {
   };
 
   const anchor = <A href={link()} />
-  // const onClick = (index: () => number) => {
-  //   setActiveButton(index())
-  //   setLink(navButtons[activeButton()].link)
-
-  // }
   return <nav class="fixed z-50 bottom-0 left-0 right-0 bg-white border-t border-gray-200">
     <ul class="flex justify-around items-center h-16">
-      <For each={navButtons}>{({icon}, index) => {
-        const isActive = activeButton() === index()
-        const textColor = isActive ? 'text-blue-500' : 'text-gray-600'
-        return (<button onClick={() => {
-          setActiveButton(index())
+      <For each={navButtons}>{(button, index) => 
+         <button onClick={()=>onClick(index())} class={`flex flex-col items-center ${activeButton() === index() ? 'text-blue-500' : 'text-gray-600'} hover:text-blue-500`}>
+          {button.icon}
+        </button>
 
-        }} class={`flex flex-col items-center ${textColor} hover:text-blue-500`}>
-          {icon}
-        </button>)
-
-      }}</For>
+      }</For>
       <Portal>
         {anchor}
       </Portal>
