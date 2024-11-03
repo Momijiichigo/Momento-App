@@ -168,7 +168,6 @@ export const MapTest: Component<{ currentLocation: Accessor<Location> }> = (prop
         }
     })
 
-    type 
     return (
         <div class="h-screen w-full flex flex-col">
             <button class="fixed bottom-20 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50"
