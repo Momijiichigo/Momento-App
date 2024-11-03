@@ -42,5 +42,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Use Camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to photo library is required to save and upload photos</string>
 </dict>
 </plist>
