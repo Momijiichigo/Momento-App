@@ -5,6 +5,7 @@ import { BiRegularCross, BiRegularLocationPlus, BiSolidNavigation } from 'solid-
 import { FaSolidMapLocationDot, FaSolidBookOpen } from 'solid-icons/fa'
 import { AiOutlineSetting } from 'solid-icons/ai'
 import { currentLocation } from '../dummyData'
+import {A} from '@solidjs/router'
 // You would typically store this in an environment variable
 const API_KEY = import.meta.env.VITE_HERE_API_KEY
 // const API_KEY = ""
@@ -39,13 +40,13 @@ const NavLink: Component<{ href: string; children: any }> = (props) => {
     }
 
     return (
-        <a
+        <A
             href={props.href}
             class={`flex flex-col items-center ${isActive() ? 'text-blue-500' : 'text-gray-600'} hover:text-blue-500`}
             onClick={handleClick}
         >
             {props.children}
-        </a>
+        </A>
     )
 }
 
@@ -166,6 +167,8 @@ export const MapTest: Component<{ currentLocation: Accessor<Location> }> = (prop
             addCircleToMap(map)
         }
     })
+
+    type 
     return (
         <div class="h-screen w-full flex flex-col">
             <button class="fixed bottom-20 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50"
@@ -187,34 +190,6 @@ export const MapTest: Component<{ currentLocation: Accessor<Location> }> = (prop
             <main class="flex-grow">
                 <div ref={mapRef!} class="w-full h-full" />
             </main>
-            <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
-                <ul class="flex justify-around items-center h-16">
-                    <li>
-                        <NavLink href="/">
-                            <BiRegularLocationPlus class="w-6 h-6" />
-                            <span class="text-xs mt-1">Momento</span>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink href="/search">
-                            <FaSolidMapLocationDot class="w-6 h-6" />
-                            <span class="text-xs mt-1">Discovery</span>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink href="/notifications">
-                            <FaSolidBookOpen class="w-6 h-6" />
-                            <span class="text-xs mt-1">History</span>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink href="/profile">
-                            <AiOutlineSetting class="w-6 h-6" />
-                            <span class="text-xs mt-1">Setting</span>
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
             <BiRegularCross class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
     )
