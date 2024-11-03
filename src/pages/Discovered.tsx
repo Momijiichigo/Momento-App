@@ -11,6 +11,12 @@ export const DiscoveredPage: Component = () => {
       <A href="/list">ChronoList</A>
       <br />
       <A href="/camera">Camera</A>
+      <br />
+      <A href="/momento">Momento</A>
+      <br />
+      <A href="/search">search</A>
+      <br />
+      <A href="/account">account</A>
     </div>
   );
 }

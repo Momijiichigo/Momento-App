@@ -141,7 +141,6 @@ export const ChronoListPage: Component = () => {
       </main>
     </div>
   );
-
 }
 
 
