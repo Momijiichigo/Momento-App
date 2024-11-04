@@ -22,7 +22,9 @@ export const MomentoListItem: Component<{ discoveredList?: boolean,item: Momento
           }</span>
         </div>
       </Show>
-      <div class="text-sm text-gray-500">
+      <div class="text-sm text-gray-500" style={{
+        "view-transition-name": `momento-created-date-${props.item.id}`
+      }}>
         Created: {formatDate(props.item.date)}
       </div>
     </div>
@@ -37,8 +39,18 @@ export const MomentoListItem: Component<{ discoveredList?: boolean,item: Momento
         <div class="absolute inset-0 bg-gradient-to-r from-transparent to-white"></div>
       </div>
       <div class="w-1/2 p-4 flex flex-col justify-center">
-        <h2 class="text-lg font-semibold text-gray-800 mb-2">{props.item.title}</h2>
-        <p class="text-sm text-gray-600">{props.item.comment}</p>
+
+        <h2 class="text-lg font-semibold text-gray-800 mb-2" style={{
+          "view-transition-name": `momento-title-${props.item.id}`
+        }}>{
+          props.item.title
+        }</h2>
+
+        <p class="text-sm text-gray-600" style={{
+          "view-transition-name": `momento-comment-${props.item.id}`
+        }}>{
+          props.item.comment
+        }</p>
       </div>
     </div>
   </VA>

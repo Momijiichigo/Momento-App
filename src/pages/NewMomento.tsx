@@ -3,6 +3,7 @@ import { createSignal } from 'solid-js'
 import { AiTwotoneCamera } from 'solid-icons/ai'
 import { BsImage } from 'solid-icons/bs'
 import { FiSend } from 'solid-icons/fi'
+import {useNavigate} from "@solidjs/router";
 
 export const NewMomentoPage: Component = () => {
     const [photo, setPhoto] = createSignal<string>('')
@@ -19,8 +20,11 @@ export const NewMomentoPage: Component = () => {
       reader.readAsDataURL(input.files[0])
     }
   }
+  const navigate = useNavigate()
 
   const handleRetake = () => {
+    navigate('/camera')
+
     setPhoto('')
   }
 

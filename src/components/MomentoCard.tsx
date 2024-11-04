@@ -15,10 +15,22 @@ export const MomentoCard: Component<{momentoInfo: MomentoInfo}> = (props) => {
     </div>
     <div class="space-y-1">
       <div class="flex justify-between items-center">
-        <h2 class="text-xl font-mono">{momentoInfo.title}</h2>
-        <span class="font-mono text-gray-600">{momentoInfo.date}</span>
+        <h2 class="text-xl font-mono" style={{
+          "view-transition-name": `momento-title-${momentoInfo.id}`
+        }}>{
+          momentoInfo.title
+        }</h2>
+        <span class="font-mono text-gray-600" style={{
+          "view-transition-name": `momento-created-date-${momentoInfo.id}`
+        }}>{
+          momentoInfo.date
+        }</span>
       </div>
-      <p class="font-mono text-gray-700">{momentoInfo.comment}</p>
+      <p class="font-mono text-gray-700" style={{
+        "view-transition-name": `momento-comment-${momentoInfo.id}`
+      }}>{
+        momentoInfo.comment
+      }</p>
     </div>
   </div>
 
