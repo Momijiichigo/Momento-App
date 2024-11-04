@@ -1,10 +1,10 @@
-import { Accessor, Component, For, createEffect, createSignal } from "solid-js";
-import { BiRegularCross, BiRegularLocationPlus, BiSolidNavigation } from 'solid-icons/bi'
-import { FaSolidMapLocationDot, FaSolidBookOpen } from 'solid-icons/fa'
-import { AiOutlineSetting } from 'solid-icons/ai'
-import { JSX } from "solid-js";
-import { A } from "@solidjs/router";
-import { Portal } from "solid-js/web";
+import {Accessor, Component, For, createEffect, createSignal} from "solid-js";
+import {BiRegularCross, BiRegularLocationPlus, BiSolidNavigation} from 'solid-icons/bi'
+import {FaSolidMapLocationDot, FaSolidBookOpen} from 'solid-icons/fa'
+import {AiOutlineSetting} from 'solid-icons/ai'
+import {JSX} from "solid-js";
+import {A} from "@solidjs/router";
+import {Portal} from "solid-js/web";
 
 
 type NavButtonInfo = {
@@ -38,15 +38,23 @@ export const Menu: Component = () => {
   const onClick = (index: number) => {
     setActiveButton(index);
     setLink(navButtons[index].link);
-    /* @ts-ignore */
-    anchor.click()
+    if ("startViewTransition" in document) {
+      /* @ts-ignore */
+      document.startViewTransition(() => {
+        /* @ts-ignore */
+        anchor.click()
+      })
+    } else {
+      /* @ts-ignore */
+      anchor.click()
+    }
   };
 
   const anchor = <A href={link()} />
   return <nav class="fixed z-50 bottom-0 left-0 right-0 bg-white border-t border-gray-200">
     <ul class="flex justify-around items-center h-16">
-      <For each={navButtons}>{(button, index) => 
-         <button onClick={()=>onClick(index())} class={`flex flex-col items-center ${activeButton() === index() ? 'text-blue-500' : 'text-gray-600'} hover:text-blue-500`}>
+      <For each={navButtons}>{(button, index) =>
+        <button onClick={() => onClick(index())} class={`flex flex-col items-center ${activeButton() === index() ? 'text-blue-500' : 'text-gray-600'} hover:text-blue-500`}>
           {button.icon}
         </button>
 

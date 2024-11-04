@@ -2,10 +2,9 @@ import {A} from "@solidjs/router";
 import {Accessor, Component, Show, on} from "solid-js";
 import {createSignal, For, createMemo} from 'solid-js';
 import {MomentoInfo} from "./Momento";
-import { ImCross } from 'solid-icons/im'
-export type MomentoDiscoveryInfo = MomentoInfo & {
-  discoveredDate?: string;
-};
+import {ImCross} from 'solid-icons/im'
+import {VA} from "../components/VA";
+import {MomentoDiscoveryInfo, MomentoListItem} from "../components/MomentListItem";
 
 export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: MomentoDiscoveryInfo[]}> = (props) => {
 
@@ -33,19 +32,15 @@ export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: M
   });
 
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {month: 'short', day: 'numeric', year: 'numeric'};
-    return new Date(dateString).toLocaleDateString('en-US', options);
-  };
 
   return (
     <>
       <header class="sticky top-0 z-50 bg-white">
         <h1 class="text-2xl font-bold text-gray-800 p-2 text-center">{props.discoveredList ? "Discovery" : "Timeline"}</h1>
         {/* close button */}
-        <A href={props.discoveredList ? '/discovered' : '/your-momento'} class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
+        <VA href={props.discoveredList ? '/discovered' : '/your-momento'} class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
           <ImCross />
-        </A>
+        </VA>
       </header>
       <div class="sticky top-12 z-40 bg-white shadow-md">
         <div class="flex justify-between items-center p-2">
@@ -68,34 +63,7 @@ export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: M
       <main class="p-4">
         <For each={sortedItems()}>
           {(item) => (
-            <A href={`/momento/${item.id}`} class="mb-8">
-              <div class="sticky top-20 z-10 bg-gray-50 flex justify-between items-center mb-0 py-2">
-                <Show when={props.discoveredList}>
-
-                  <div class="flex items-center">
-                  <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
-                  <span class="text-sm font-medium text-gray-700">{formatDate(sortCriteria() === SortCriteria.CreatedDate ? item.date : item.discoveredDate || item.date)}</span>
-                  </div>
-                </Show>
-                <div class="text-sm text-gray-500">
-                  Created: {formatDate(item.date)}
-                </div>
-              </div>
-              <div class="bg-white rounded-lg overflow-hidden shadow-md flex h-32">
-                <div class="w-1/2 relative">
-                  <img
-                    src={item.photoUrl}
-                    alt={item.title}
-                    class="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-r from-transparent to-white"></div>
-                </div>
-                <div class="w-1/2 p-4 flex flex-col justify-center">
-                  <h2 class="text-lg font-semibold text-gray-800 mb-2">{item.title}</h2>
-                  <p class="text-sm text-gray-600">{item.comment}</p>
-                </div>
-              </div>
-            </A>
+            <MomentoListItem discoveredList={props.discoveredList} item={item} />
           )}
         </For>
       </main>

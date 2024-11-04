@@ -2,6 +2,7 @@ import {Component} from "solid-js";
 import { createSignal, For, Show } from 'solid-js'
 import { FiArrowLeft } from 'solid-icons/fi'
 import { A } from "@solidjs/router";
+import {VA} from "../components/VA";
 
 interface Profile {
   acountId: string
@@ -33,9 +34,9 @@ export const SearchPage: Component = () => {
   return (
     <div class="max-w-2xl mx-auto p-4">
       <div class="flex items-center gap-4 mb-6">
-        <A href="/account" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+        <VA href="/account" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
           <FiArrowLeft class="w-6 h-6" />
-        </A>
+        </VA>
         <input
           type="search"
           placeholder="Search by ID or name..."

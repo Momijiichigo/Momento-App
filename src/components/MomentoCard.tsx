@@ -10,6 +10,7 @@ export const MomentoCard: Component<{momentoInfo: MomentoInfo}> = (props) => {
         src={momentoInfo.photoUrl}
         alt={`Photo ${momentoInfo.id}`}
         class="w-full h-60 object-cover"
+        style={{"view-transition-name": `momento-img-${momentoInfo.id}`}}
       />
     </div>
     <div class="space-y-1">

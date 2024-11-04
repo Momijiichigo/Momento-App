@@ -2,8 +2,9 @@ import {Component} from "solid-js";
 import {createSignal, For} from 'solid-js'
 import {getMomentoInfo} from "../dummyData";
 import {MomentoCard} from "../components/MomentoCard";
-import {A, useParams} from "@solidjs/router";
-import { FiArrowLeft } from "solid-icons/fi";
+import {A, useNavigate, useParams} from "@solidjs/router";
+import {FiArrowLeft} from "solid-icons/fi";
+import {startViewTransition} from "../components/VA";
 
 export interface MomentoInfo {
   id: number
@@ -17,15 +18,23 @@ export interface MomentoInfo {
 
 export const MomentoPage: Component = () => {
   const momentInfo = getMomentoInfo(parseInt(useParams().id))
-
+  const navigate = useNavigate()
   return (
     <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg border border-gray-200">
 
-      <A href="/discovered" class="flex items-center justify-between mb-3">
-        <button class="p-0 hover:bg-gray-100 rounded-full transition-colors">
+      <div class="flex items-center justify-between mb-3">
+
+        <button
+          onClick={() => {
+            startViewTransition(() => navigate(-1))
+          }}
+          class="p-0 hover:bg-gray-100 rounded-full transition-colors"
+        >
+
           <FiArrowLeft class="w-6 h-6" />
+
         </button>
-      </A>
+      </div>
       <div class="space-y-8">
         <MomentoCard momentoInfo={momentInfo} />
         <For each={momentInfo.subPosts}>
