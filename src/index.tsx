@@ -4,7 +4,7 @@ import "./index.css";
 import {A, Route, Router} from "@solidjs/router";
 import {Home} from "./pages/Home";
 import {DiscoveredMapPage} from "./pages/DiscoveredMap";
-import { MapTest } from "./pages/MapTest";
+import { MapTest } from "./pages/Map.test";
 import {CameraPage} from "./pages/Camera";
 // import { ChatList } from "./pages/ChatList";
 // import { ChatScreen } from "./pages/ChatScreen";
@@ -37,7 +37,7 @@ import { YourMomentoListPage } from "./pages/YourMomentoList";
 
 
 render(
-  () => <Router root={(props)=> <>{props.children}<Menu /></>}>
+  () => <Router root={(props)=> <div class="mb-14">{props.children}<Menu /></div>}>
     <Route path="/" component={DiscoveredMapPage} />
     <Route path="/login" component={Login} />
     <Route path="/discovered" component={DiscoveredMapPage} />

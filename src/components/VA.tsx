@@ -1,4 +1,4 @@
-import {A} from "@solidjs/router";
+import {A, useNavigate} from "@solidjs/router";
 import {JSX, splitProps} from "solid-js";
 import {Component} from "solid-js";
 import {Portal} from "solid-js/web";
@@ -14,17 +14,13 @@ export function startViewTransition(callback: () => void) {
 
 export const VA: Component<{href: string, children: JSX.Element} & { [key: string]: any }> = (props) => {
 
-  const elem = <A href={props.href}></A>
-
+  const nagivate = useNavigate()
 
   return <>
     <a {...props} href="javascript:void(0)" onClick={() => {
       /* @ts-ignore */
-      startViewTransition(()=>elem.click())
+      startViewTransition(()=>nagivate(props.href))
     }}>{props.children}</a>
-    <Portal>
-      {elem}
-    </Portal>
   </>
 
 }

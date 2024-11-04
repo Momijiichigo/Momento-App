@@ -13,9 +13,7 @@ import { currentLocation } from '../dummyData'
 export const SettingLocation: Component<{currentLocation: Accessor<Location>}> = (props) => {
   const [map, setMap] = createSignal<H.Map>() as [Accessor<H.Map>, Setter<H.Map>]
 
-  const [selectedMomentoId, setSelectedMomentoId] = createSignal<number | null>(null)
   const [markersInfo, setMarkersInfo] = createSignal<Marker[] | undefined>(undefined)
-  let invisibleLink: HTMLAnchorElement
   onMount(()=>{
     setTimeout(()=>
      addCircleToMap(map(), currentLocation(), 'rgba(0, 0, 255, 0.2)'),
@@ -36,8 +34,6 @@ export const SettingLocation: Component<{currentLocation: Accessor<Location>}> =
         }
         focusLocationButton
       />
-
-      <A ref={invisibleLink!} href={`/momento/${selectedMomentoId()}`} />
     </>
   )
 

@@ -20,13 +20,18 @@ export const MomentoPage: Component = () => {
   const momentInfo = getMomentoInfo(parseInt(useParams().id))
   const navigate = useNavigate()
   return (
-    <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+    <div class="max-w-2xl mx-auto p-3 bg-white rounded-lg shadow-lg border border-gray-200" style={{
+      // 'view-transition-name': 'child-page',
+    }}>
 
       <div class="flex items-center justify-between mb-3">
 
         <button
           onClick={() => {
-            startViewTransition(() => navigate(-1))
+            startViewTransition(()=> new Promise((resolve)=> {
+              navigate(-1)
+              setTimeout(resolve, 10)
+            }))
           }}
           class="p-0 hover:bg-gray-100 rounded-full transition-colors"
         >

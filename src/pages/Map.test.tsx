@@ -1,7 +1,6 @@
 import H from '@here/maps-api-for-javascript'
 import {createSignal, onMount, onCleanup, Component, Accessor, Setter} from 'solid-js'
 import {BiRegularCross, BiRegularLocationPlus, BiSolidNavigation} from 'solid-icons/bi'
-// You would typically store this in an environment variable
 import {Marker, Location, Map, addCircleToMap} from '../components/Map'
 import {A} from '@solidjs/router'
 

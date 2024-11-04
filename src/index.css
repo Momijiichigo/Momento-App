@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+}
+@keyframes parent-page-swipe-in {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes parent-page-swipe-out {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes child-page-swipe-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes child-page-swipe-out {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+}
+
+/* ::view-transition-old(parent-page) { */
+/*   animation: 250ms both parent-page-swipe-out; */
+/*   z-index: 100; */
+/* } */
+/**/
+/* ::view-transition-new(parent-page) { */
+/*   animation: 250ms both parent-page-swipe-in; */
+/*   z-index: 0; */
+/* } */
+/**/
+/* ::view-transition-old(child-page) { */
+/*   animation: 250ms both child-page-swipe-out; */
+/*   z-index: 100; */
+/* } */
+/**/
+/* ::view-transition-new(child-page) { */
+/*   animation: 250ms both child-page-swipe-in; */
+/*   z-index: 0; */
+/* } */
+/**/

@@ -4,13 +4,13 @@ import {MomentoInfo} from "../pages/Momento"
 export const MomentoCard: Component<{momentoInfo: MomentoInfo}> = (props) => {
   const {momentoInfo} = props
 
-  return <div class="space-y-2">
-    <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
+  return <div class="space-y-2 z-0">
+    <div class="border-2 border-gray-300 rounded-lg overflow-hidden"
+        style={{"view-transition-name": `momento-img-${momentoInfo.id}`}}>
       <img
         src={momentoInfo.photoUrl}
         alt={`Photo ${momentoInfo.id}`}
         class="w-full h-60 object-cover"
-        style={{"view-transition-name": `momento-img-${momentoInfo.id}`}}
       />
     </div>
     <div class="space-y-1">

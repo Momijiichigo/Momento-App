@@ -34,7 +34,9 @@ export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: M
 
 
   return (
-    <>
+    <div style={{
+      // 'view-transition-name': 'parent-page',
+    }}>
       <header class="sticky top-0 z-50 bg-white">
         <h1 class="text-2xl font-bold text-gray-800 p-2 text-center">{props.discoveredList ? "Discovery" : "Timeline"}</h1>
         {/* close button */}
@@ -67,7 +69,7 @@ export const ChronoListPage: Component<{discoveredList?: boolean, momentoInfo: M
           )}
         </For>
       </main>
-    </>
+    </div>
   );
 }
 
