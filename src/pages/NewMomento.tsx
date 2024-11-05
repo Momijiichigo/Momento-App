@@ -6,7 +6,7 @@ import { FiSend } from 'solid-icons/fi'
 import {useNavigate} from "@solidjs/router";
 
 export const NewMomentoPage: Component = () => {
-    const [photo, setPhoto] = createSignal<string>('')
+  const [photo, setPhoto] = createSignal<string>('')
   const [title, setTitle] = createSignal('')
   const [comment, setComment] = createSignal('')
 
