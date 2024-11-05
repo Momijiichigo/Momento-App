@@ -5,7 +5,7 @@ export const [currentLocation, setCurrentLocation] = createSignal<{
 }>({lat: 52.51229, lng: 13.40048});
 
 import {MomentoInfo} from "./pages/Momento";
-import {MomentoDiscoveryInfo} from "./pages/ChronoList";
+import {MomentoDiscoveryInfo} from "./components/MomentListItem";
 // dummy Momento data
 export const dummyMomento: MomentoDiscoveryInfo[] = [
   {

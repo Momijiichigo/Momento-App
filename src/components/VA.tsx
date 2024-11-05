@@ -1,4 +1,4 @@
-import {A, useNavigate} from "@solidjs/router";
+import {useNavigate} from "@solidjs/router";
 import {JSX, splitProps} from "solid-js";
 import {Component} from "solid-js";
 import {Portal} from "solid-js/web";
